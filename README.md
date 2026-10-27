@@ -1,4 +1,4 @@
-# Galaxy Raider - Retro Arcade Space Shooter 🚀👾
+# Galaxy Raider - Retro Arcade Space Shooter 
 
 A fast-paced, retro synthwave arcade space shooter built with pure **HTML5 Canvas**, **JavaScript (ES6+)**, and the **Web Audio API**. Zero dependencies, lightning-fast 60 FPS performance, procedural retro sound effects, particle physics, and responsive controls for desktop and mobile.
 
