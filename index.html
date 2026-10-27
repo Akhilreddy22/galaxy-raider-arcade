@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Galaxy Raider - Retro Arcade Space Shooter</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><polygon points='12 2 19 21 12 17 5 21 12 2'/></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="arcade-container">
+    <!-- Header -->
+    <header class="arcade-header">
+      <div class="title-glow">GALAXY <span>RAIDER</span></div>
+      <div style="display: flex; gap: 8px;">
+        <button id="soundBtn" class="btn-small">🔊 Audio: ON</button>
+        <button id="pauseBtn" class="btn-small">⏸ Pause</button>
+      </div>
+    </header>
+
+    <!-- Game Screen -->
+    <div class="screen-wrapper">
+      <div class="scanlines"></div>
+
+      <!-- HUD Overlay -->
+      <div class="hud-bar">
+        <div class="hud-item">
+          <span class="hud-label">Shields</span>
+          <div class="health-container">
+            <div id="hudHealthBar" class="h-full bg-emerald-500" style="width: 100%; height: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="hud-item" style="text-align: center;">
+          <span class="hud-label">Score</span>
+          <span id="hudScore" class="hud-value">0</span>
+        </div>
+
+        <div class="hud-item" style="text-align: center;">
+          <span class="hud-label">Wave</span>
+          <span id="hudWave" class="hud-value" style="color: #a855f7;">1</span>
+        </div>
+
+        <div class="hud-item" style="text-align: right;">
+          <span class="hud-label">Nukes (B)</span>
+          <span id="hudBombCount" class="hud-value" style="color: #f97316;">2</span>
+        </div>
+      </div>
+
+      <!-- Canvas -->
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- Start Overlay -->
+      <div id="startOverlay" class="overlay">
+        <h2>GALAXY RAIDER</h2>
+        <p>Defend the galaxy against alien fleets, collect weapon power-ups, survive boss waves, and set the high score.</p>
+
+        <div class="controls-grid">
+          <div class="control-item">
+            <strong>Movement:</strong><br>Arrow Keys / W A S D
+          </div>
+          <div class="control-item">
+            <strong>Fire Lasers:</strong><br>Spacebar / Hold Touch
+          </div>
+          <div class="control-item">
+            <strong>Nuke Bomb:</strong><br>B Key / Button
+          </div>
+          <div class="control-item">
+            <strong>Pause Game:</strong><br>P Key / Button
+          </div>
+        </div>
+
+        <button id="startBtn" class="btn-arcade">LAUNCH MISSION</button>
+      </div>
+
+      <!-- Pause Overlay -->
+      <div id="pauseOverlay" class="overlay hidden">
+        <h2>MISSION PAUSED</h2>
+        <p>Take a breath, Commander. The alien fleet is waiting.</p>
+        <button onclick="window.game.togglePause()" class="btn-arcade">RESUME</button>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameOverOverlay" class="overlay game-over hidden">
+        <h2>MISSION FAILED</h2>
+        <p>Your ship was destroyed in deep space.</p>
+
+        <div style="margin-bottom: 24px; font-size: 16px;">
+          <div>Final Score: <strong id="finalScore" style="color: #38bdf8; font-size: 24px;">0</strong></div>
+          <div style="margin-top: 6px;">Waves Cleared: <strong id="finalWave" style="color: #a855f7;">1</strong></div>
+        </div>
+
+        <button id="restartBtn" class="btn-arcade">REPLAY MISSION</button>
+      </div>
+    </div>
+
+    <!-- Quick Footer Action Bar -->
+    <footer class="arcade-footer">
+      <div>Best High Score: <strong id="hudHighScore" style="color: #f59e0b;">0</strong></div>
+      <div style="display: flex; gap: 8px;">
+        <button id="bombBtn" class="btn-small" style="border-color: #f97316; color: #f97316;">💣 NUKE (B)</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
